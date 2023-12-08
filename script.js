@@ -32,9 +32,32 @@ function addList() {
         if (toDoList.length == 0) {
             listContainer.innerHTML = "No Activities";
           }
+          removeAll();
     }
     toDoItem.appendChild(toDoP);
     toDoItem.appendChild(remove);
     listContainer.appendChild(toDoItem);
   });
+  removeAll()
+}
+
+function removeAll(){
+  const removeAllContainer = document.getElementById("removeAllContainer");
+  removeAllContainer.style.textAlign = "center";
+  const removeAllBtn = document.createElement("button");
+  if(listContainer.getElementsByClassName("toDoItem").length === 2 && removeAllContainer.getElementsByClassName("removeAllBtn").length === 0 ){
+    removeAllBtn.className = "removeAllBtn";
+    removeAllBtn.innerHTML = "Remove All";
+    removeAllBtn.onclick = (event) => {
+      toDoList.splice(0, toDoList.length);
+      listContainer.innerHTML = "No Activities";
+      event.target.remove();
+      toDoList.splice(0, toDoList.length);
+      listContainer.innerHTML = "No Activities";
+    }
+    removeAllContainer.appendChild(removeAllBtn);
+  }
+  else if(listContainer.getElementsByClassName("toDoItem").length < 2){
+    removeAllContainer.innerHTML = "";
+  }
 }

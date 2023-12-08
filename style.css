@@ -35,7 +35,16 @@ p.toDoP{
     overflow: auto;
     height: 100%;
 }
-.removeBtn{
+.removeBtn, .removeAllBtn{
     background-color: red;
     color:white;
+}
+
+.removeAllBtn{
+    margin-top: 2%;
+    padding: 1em;
+    border-radius: 1em;
+}
+button:hover{
+    background-color: green;
 }
