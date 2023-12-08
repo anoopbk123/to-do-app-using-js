@@ -1,63 +1,84 @@
 const toDoList = [];
 const listContainer = document.getElementById("listContainer");
-const toDoInput = document.getElementsByTagName("input")[0];
+const toDoInput = document.querySelector("input");
+const removeAllContainer = document.getElementById("removeAllContainer");
+const strikethroughState = [];
 
 function addToTodo() {
-  if (toDoInput.value.trim()) {
-    toDoList.push(toDoInput.value);
+  const inputValue = toDoInput.value.trim();
+
+  if (inputValue) {
+    toDoList.push(inputValue);
+    strikethroughState.push(false); // Initialize the strikethrough state for the new item
     toDoInput.value = "";
-    console.log(toDoList);
-    addList();
+    updateList();
   } else {
-    alert("please enter activity");
+    alert("Please enter an activity");
   }
 }
 
-function addList() {
-  listContainer.innerHTML = "";
-  toDoList.forEach((toDo, index) => {
-    const toDoItem = document.createElement("div");
-    toDoItem.className = "toDoItem";
-    const toDoP = document.createElement("p");
-    toDoP.className = "toDoP";
-    toDoP.innerHTML = toDo;
-    const remove = document.createElement("button");
-    remove.className = 'removeBtn'
-    remove.innerHTML = "remove";
-    remove.onclick = (event) => {
-        toDoList.splice(index, 1);
-        console.log(toDoList);
-        event.target.parentNode.remove();
-        addList();//to get correct index
-        if (toDoList.length == 0) {
-            listContainer.innerHTML = "No Activities";
-          }
-          removeAll();
-    }
-    toDoItem.appendChild(toDoP);
-    toDoItem.appendChild(remove);
-    listContainer.appendChild(toDoItem);
-  });
-  removeAll()
+function toggleStrikethrough(index) {
+  strikethroughState[index] = !strikethroughState[index];
+  updateList();
 }
 
-function removeAll(){
-  const removeAllContainer = document.getElementById("removeAllContainer");
-  removeAllContainer.style.textAlign = "center";
-  const removeAllBtn = document.createElement("button");
-  if(listContainer.getElementsByClassName("toDoItem").length === 2 && removeAllContainer.getElementsByClassName("removeAllBtn").length === 0 ){
+function removeTask(index) {
+  toDoList.splice(index, 1);
+  strikethroughState.splice(index, 1); // Remove the corresponding strikethrough state
+  updateList();
+}
+
+function removeAllTasks() {
+  toDoList.splice(0, toDoList.length);
+  strikethroughState.splice(0, strikethroughState.length); // Remove all strikethrough states
+  updateList();
+}
+
+function updateList() {
+  listContainer.innerHTML = "";
+
+  if (toDoList.length === 0) {
+    listContainer.innerHTML = "No Activities";
+  } else {
+    toDoList.forEach((toDo, index) => {
+      const toDoItem = document.createElement("div");
+      toDoItem.className = "toDoItem";
+
+      const toDoP = document.createElement("p");
+      toDoP.className = "toDoP";
+      toDoP.innerHTML = toDo;
+
+      if (strikethroughState[index]) {
+        toDoP.style.textDecoration = "line-through";
+      }
+
+      toDoP.addEventListener("click", () => toggleStrikethrough(index));
+
+      const remove = document.createElement("button");
+      remove.className = "removeBtn";
+      remove.innerHTML = "Remove";
+      remove.addEventListener("click", () => removeTask(index));
+
+      toDoItem.appendChild(toDoP);
+      toDoItem.appendChild(remove);
+      listContainer.appendChild(toDoItem);
+    });
+  }
+
+  updateRemoveAllButton();
+}
+
+function updateRemoveAllButton() {
+  removeAllContainer.innerHTML = "";
+
+  if (toDoList.length >= 2) {
+    const removeAllBtn = document.createElement("button");
     removeAllBtn.className = "removeAllBtn";
     removeAllBtn.innerHTML = "Remove All";
-    removeAllBtn.onclick = (event) => {
-      toDoList.splice(0, toDoList.length);
-      listContainer.innerHTML = "No Activities";
-      event.target.remove();
-      toDoList.splice(0, toDoList.length);
-      listContainer.innerHTML = "No Activities";
-    }
+    removeAllBtn.addEventListener("click", removeAllTasks);
     removeAllContainer.appendChild(removeAllBtn);
   }
-  else if(listContainer.getElementsByClassName("toDoItem").length < 2){
-    removeAllContainer.innerHTML = "";
-  }
 }
+
+// Initial setup
+updateList();

@@ -29,11 +29,13 @@ div#listContainer{
     flex-wrap: wrap;
     margin:auto;
     margin-top: 3px;
+    padding: 0;
 }
 p.toDoP{
     flex:5;
     overflow: auto;
     height: 100%;
+    /* text-decoration: none; */
 }
 .removeBtn, .removeAllBtn{
     background-color: red;
