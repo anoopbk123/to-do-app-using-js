@@ -9,7 +9,7 @@ function addToTodo() {
 
   if (inputValue) {
     toDoList.push(inputValue);
-    strikethroughState.push(false); // Initialize the strikethrough state for the new item
+    strikethroughState.push(false);
     toDoInput.value = "";
     updateList();
   } else {
@@ -24,13 +24,13 @@ function toggleStrikethrough(index) {
 
 function removeTask(index) {
   toDoList.splice(index, 1);
-  strikethroughState.splice(index, 1); // Remove the corresponding strikethrough state
+  strikethroughState.splice(index, 1);
   updateList();
 }
 
 function removeAllTasks() {
   toDoList.splice(0, toDoList.length);
-  strikethroughState.splice(0, strikethroughState.length); // Remove all strikethrough states
+  strikethroughState.splice(0, strikethroughState.length);
   updateList();
 }
 
@@ -80,5 +80,4 @@ function updateRemoveAllButton() {
   }
 }
 
-// Initial setup
 updateList();
