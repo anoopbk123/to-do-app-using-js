@@ -13,7 +13,7 @@ function addToTodo() {
     toDoInput.value = "";
     updateList();
   } else {
-    alert("Please enter an activity");
+    viewAlert("Please enter an activity");
   }
 }
 
@@ -49,7 +49,7 @@ function updateList() {
       toDoP.innerHTML = toDo;
 
       if (strikethroughState[index]) {
-        toDoP.style.textDecoration = "line-through";
+        toDoP.style.textDecoration = "line-through 2px solid red";
       }
 
       toDoP.addEventListener("click", () => toggleStrikethrough(index));
@@ -81,3 +81,14 @@ function updateRemoveAllButton() {
 }
 
 updateList();
+
+function alertClose(){
+  alertBox.style.display = 'none';
+  document.body.style.pointerEvents = 'auto'
+}
+function viewAlert(msg){
+  alertMsg.innerHTML = `${msg}`;
+  alertBox.style.display = 'block';
+  document.body.style.pointerEvents = 'none';
+  alertBox.style.pointerEvents = 'auto'
+}

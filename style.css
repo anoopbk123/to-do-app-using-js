@@ -1,5 +1,6 @@
 body{
     text-align: center;
+    background-color: #ACC8E5;
 }
 input{
     width: 50%;
@@ -48,4 +49,27 @@ p.toDoP{
 }
 button:hover{
     background-color: green;
+}
+#alertBox{
+    display: none;
+    position: fixed;
+    top:35%;
+    font-size: 1.2em;
+    border: 0;
+}
+#aertIcon{
+    font-size: 2em;
+    display: inline-block;
+    border: 2px solid;
+    padding: 0.2rem;
+    border-radius: 30px;
+    width: 40px;
+    height: 40px;
+    color:red;
+}
+#alertBox button{
+    background-color: #3081D0;
+    color: aliceblue;
+    border: 0;
+    outline: 2px solid #ace7ed;
 }

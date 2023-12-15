@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>To Do App</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>To Do App</h1>
-    <input type="text"/> <button class="add" onclick="addToTodo()">Add</button>
-    <h3>To Do List</h3>
-    <div id="listContainer">
-        No Activity
-    </div>
-    <div id="removeAllContainer">
-        
-    </div>
+    <input type="text" /> <button class="add" onclick="addToTodo()">Add</button>
+    <h2>To Do List</h2>
+    <div id="listContainer">No Activity</div>
+    <div id="removeAllContainer"></div>
+    <dialog id="alertBox" open>
+        <span id="aertIcon">!</span>
+      <p id="alertMsg"></p>
+      <button onclick="alertClose()">OK</button>
+    </dialog>
+    <!-- <button onclick="alert('hello')">gdg</button> -->
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
