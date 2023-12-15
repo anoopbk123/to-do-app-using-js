@@ -81,7 +81,7 @@ function updateRemoveAllButton() {
 }
 
 updateList();
-
+//alert
 function alertClose(){
   alertBox.style.display = 'none';
   document.body.style.pointerEvents = 'auto'
@@ -91,4 +91,15 @@ function viewAlert(msg){
   alertBox.style.display = 'block';
   document.body.style.pointerEvents = 'none';
   alertBox.style.pointerEvents = 'auto'
+}
+//Dark mode
+function darkMode(){
+  if(document.documentElement.style.colorScheme === 'dark'){
+    document.documentElement.style.colorScheme = 'light';
+    modeIcon.innerHTML = '&#127773;' ;
+  }
+  else{
+    document.documentElement.style.colorScheme = 'dark';
+    modeIcon.innerHTML = '&#127774;';
+  }
 }

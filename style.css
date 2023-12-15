@@ -1,6 +1,6 @@
-html{
+/* html{
     color-scheme: light dark;
-}
+} */
 body{
     text-align: center;
     /* background-color: #ACC8E5; */
@@ -60,6 +60,8 @@ button:hover{
     top:35%;
     font-size: 1.2em;
     border: 0;
+    color:#FFFFFF;
+    background-color:#302E07;
 }
 #aertIcon{
     font-size: 2em;
@@ -76,4 +78,7 @@ button:hover{
     color: aliceblue;
     border: 0;
     outline: 2px solid #ace7ed;
+}
+#modeIcon:hover{
+    cursor: pointer;
 }
